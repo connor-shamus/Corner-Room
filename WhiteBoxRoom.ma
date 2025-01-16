@@ -1,29 +1,31 @@
 //Maya ASCII 2025ff03 scene
 //Name: WhiteBoxRoom.ma
-//Last modified: Tue, Jan 14, 2025 06:47:49 PM
+//Last modified: Wed, Jan 15, 2025 07:24:33 PM
 //Codeset: 1252
 requires maya "2025ff03";
-requires "mtoa" "5.4.2.1";
+requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiImagerDenoiserOidn"
+		 "mtoa" "5.4.2.1";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2025";
 fileInfo "version" "2025";
 fileInfo "cutIdentifier" "202407121012-8ed02f4c99";
 fileInfo "osv" "Windows 10 Pro v2009 (Build: 19045)";
-fileInfo "UUID" "BE3B9084-454C-DA6F-D745-0F9C123EB86E";
+fileInfo "UUID" "53FCB659-475F-D6EF-8273-38BADC0453DB";
 createNode transform -s -n "persp";
 	rename -uid "AC3AA175-45C8-8D76-F7AD-67B147A20A98";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 28 21 28 ;
-	setAttr ".r" -type "double3" -27.938352729602379 44.999999999999972 -5.172681101354183e-14 ;
+	setAttr ".t" -type "double3" 19.197215903697789 8.9835227188604048 13.296551104585438 ;
+	setAttr ".r" -type "double3" -18.938352729477067 -302.60000000001605 -2.9516770117941817e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "34A5DE92-4CE5-D870-4574-8EAFC76DA8C2";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 44.82186966202994;
+	setAttr ".coi" 26.619185176033398;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
+	setAttr ".tp" -type "double3" 0.5 0.5 0.5 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 createNode transform -s -n "top";
 	rename -uid "FE0B5366-4100-AC72-3F21-77903F9B5A02";
@@ -75,39 +77,91 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
 	setAttr ".ai_translator" -type "string" "orthographic";
-createNode transform -n "pCube1";
-	rename -uid "E0A98F16-465C-EEFE-E869-3083DA1FFF4C";
-createNode mesh -n "pCubeShape1" -p "pCube1";
-	rename -uid "A966015A-4589-65A8-67A2-FC8E42D2EFC4";
+createNode transform -n "WhiteboxRoom";
+	rename -uid "44CD8989-4ABC-804A-3F98-92A84C2D1EAA";
+	setAttr ".rp" -type "double3" 0 3 0 ;
+	setAttr ".sp" -type "double3" 0 3 0 ;
+createNode mesh -n "WhiteboxRoomShape" -p "WhiteboxRoom";
+	rename -uid "44C99F6E-46F6-2491-6A9A-679C90CBA79B";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
+	setAttr -s 6 ".gtag";
+	setAttr ".gtag[0].gtagnm" -type "string" "back";
+	setAttr ".gtag[0].gtagcmp" -type "componentList" 3 "f[0]" "f[3]" "f[6:7]";
+	setAttr ".gtag[1].gtagnm" -type "string" "bottom";
+	setAttr ".gtag[1].gtagcmp" -type "componentList" 3 "f[1]" "f[4]" "f[8:9]";
+	setAttr ".gtag[2].gtagnm" -type "string" "front";
+	setAttr ".gtag[2].gtagcmp" -type "componentList" 0;
+	setAttr ".gtag[3].gtagnm" -type "string" "left";
+	setAttr ".gtag[3].gtagcmp" -type "componentList" 3 "f[2]" "f[5]" "f[10:11]";
+	setAttr ".gtag[4].gtagnm" -type "string" "right";
+	setAttr ".gtag[4].gtagcmp" -type "componentList" 0;
+	setAttr ".gtag[5].gtagnm" -type "string" "top";
+	setAttr ".gtag[5].gtagcmp" -type "componentList" 0;
+	setAttr ".pv" -type "double2" 0.625 1 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
+	setAttr -s 28 ".uvst[0].uvsp[0:27]" -type "float2" 0.375 0 0.375 0.25
+		 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.125 0 0.125 0.25 0.375
+		 0.5 0.625 0.5 0.625 0.75 0.375 0.75 0.625 1 0.375 1 0.125 0 0.375 0 0.375 0.25 0.125
+		 0.25 0.375 0.5 0.625 0.5 0.625 0.75 0.625 1 0.375 1 0.375 0 0.375 0.25 0.125 0.25;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 14 ".vt[0:13]"  -3 0 3 3 0 3 -3 6 3 -3 6 -3 3 6 -3 -3 0 -3
+		 3 0 -3 -3.19500017 6 -3.19500017 3 6 -3.19500017 3 -0.19500017 -3.19500017 -3.19500017 -0.19500017 -3.19500017
+		 3 -0.19500017 3 -3.19500017 -0.19500017 3 -3.19500017 6 3;
+	setAttr -s 24 ".ed[0:23]"  0 1 0 3 4 0 5 6 0 0 2 0 2 3 0 3 5 0 4 6 0
+		 5 0 0 6 1 0 3 7 0 4 8 0 7 8 0 6 9 0 8 9 0 10 9 0 7 10 0 1 11 0 9 11 0 0 12 0 12 11 0
+		 10 12 0 2 13 0 12 13 0 13 7 0;
+	setAttr -s 12 -ch 48 ".fc[0:11]" -type "polyFaces" 
+		f 4 11 13 -15 -16
+		mu 0 4 20 21 22 4
+		f 4 14 17 -20 -21
+		mu 0 4 4 22 23 24
+		f 4 20 22 23 15
+		mu 0 4 8 25 26 27
+		f 4 5 2 -7 -2
+		mu 0 4 10 13 12 11
+		f 4 7 0 -9 -3
+		mu 0 4 13 15 14 12
+		f 4 -6 -5 -4 -8
+		mu 0 4 16 19 18 17
+		f 4 1 10 -12 -10
+		mu 0 4 2 3 21 20
+		f 4 6 12 -14 -11
+		mu 0 4 3 5 22 21
+		f 4 8 16 -18 -13
+		mu 0 4 5 7 23 22
+		f 4 -1 18 19 -17
+		mu 0 4 7 6 24 23
+		f 4 3 21 -23 -19
+		mu 0 4 0 1 26 25
+		f 4 4 9 -24 -22
+		mu 0 4 1 9 27 26;
+	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
+	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
+	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
+	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "63F77775-4AAF-B84C-C0A4-88B8C73B225A";
-	setAttr -s 2 ".lnk";
-	setAttr -s 2 ".slnk";
+	rename -uid "92ABCCB4-46DA-25A4-6137-FD97E1293D5D";
+	setAttr -s 5 ".lnk";
+	setAttr -s 5 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "0352F0CA-4B4F-9211-5F6C-99A40AB049B8";
+	rename -uid "EAE87B72-4136-49DC-A840-C7BC39801189";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "0C38407B-422C-9B7D-08B0-728219634A33";
+	rename -uid "2015305B-4DFA-F22E-FA36-29802A16B439";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "95CB03A5-4D35-E50E-B2E3-9B9E7C9E8064";
+	rename -uid "2CF4BD9D-4667-31B6-9032-889EB6D8C8A2";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "77025D0A-42B3-6F8A-8492-E39AEFE83A39";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "C81CE5E4-42FF-9648-05D3-6E80794B0BD4";
+	rename -uid "53A33EC3-44FF-72ED-B9BA-83A6E25AC105";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "154E5624-400C-B840-5976-5C830D2C1412";
 	setAttr ".g" yes;
-createNode polyCube -n "polyCube1";
-	rename -uid "4B12324A-44AC-F7CF-C669-A7928C45DA8F";
-	setAttr ".cuv" 4;
 createNode script -n "uiConfigurationScriptNode";
 	rename -uid "4273FC94-4754-C047-9A36-3583AAF2A584";
 	setAttr ".b" -type "string" (
@@ -155,6 +209,60 @@ createNode script -n "sceneConfigurationScriptNode";
 	rename -uid "F72F6231-40BF-B460-91C5-098C82176960";
 	setAttr ".b" -type "string" "playbackOptions -min 1 -max 120 -ast 1 -aet 200 ";
 	setAttr ".st" 6;
+createNode aiOptions -s -n "defaultArnoldRenderOptions";
+	rename -uid "E67C6EC1-40D5-A3C4-AAD3-DA8CF379DAFC";
+	setAttr ".version" -type "string" "5.4.2.1";
+createNode aiAOVFilter -s -n "defaultArnoldFilter";
+	rename -uid "AC5F152B-489D-B501-21D4-18AF9AC51295";
+	setAttr ".ai_translator" -type "string" "gaussian";
+createNode aiAOVDriver -s -n "defaultArnoldDriver";
+	rename -uid "9E2AEBE5-4679-A9CE-C79B-EA99C6627369";
+	setAttr ".ai_translator" -type "string" "exr";
+createNode aiAOVDriver -s -n "defaultArnoldDisplayDriver";
+	rename -uid "5DF6F6A0-4B84-71FC-FCB1-DEBB4822AF67";
+	setAttr ".ai_translator" -type "string" "maya";
+	setAttr ".output_mode" 0;
+createNode aiImagerDenoiserOidn -s -n "defaultArnoldDenoiser";
+	rename -uid "0ACDFBC7-48D8-B85F-055C-B7AEDC1BEA02";
+createNode lambert -n "PinkColor";
+	rename -uid "09F0F8C1-442A-BDBB-4E44-59A796FF0B5D";
+	setAttr ".c" -type "float3" 0.472 0.32379201 0.32379201 ;
+createNode shadingEngine -n "lambert2SG";
+	rename -uid "9C0844FD-40BD-C1D2-D4B3-A388C5327CBA";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo1";
+	rename -uid "3B58AF61-4185-2D1B-61FE-D4B2D62BFDF7";
+createNode shadingEngine -n "blinn1SG";
+	rename -uid "9779DFB8-4118-37E0-825C-BF9B3FB707E2";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo2";
+	rename -uid "BCA0FB91-4E11-D240-A6E9-9AB7D1889D68";
+createNode shadingEngine -n "phong1SG";
+	rename -uid "84265C8E-472C-31D5-21C7-90BA0DBD6902";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo3";
+	rename -uid "B921C84D-4F2C-0A42-EF27-529827CD7D96";
+createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
+	rename -uid "206CAAF6-437D-AFB8-00A4-139E22168EB0";
+	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
+	setAttr ".tgi[0].vl" -type "double2" -44.047617297323995 -615.47616601936511 ;
+	setAttr ".tgi[0].vh" -type "double2" 409.52379325079607 44.047617297323995 ;
+	setAttr -s 4 ".tgi[0].ni";
+	setAttr ".tgi[0].ni[0].x" -64.285713195800781;
+	setAttr ".tgi[0].ni[0].y" -145.71427917480469;
+	setAttr ".tgi[0].ni[0].nvs" 1923;
+	setAttr ".tgi[0].ni[1].x" 242.85714721679688;
+	setAttr ".tgi[0].ni[1].y" -145.71427917480469;
+	setAttr ".tgi[0].ni[1].nvs" 1923;
+	setAttr ".tgi[0].ni[2].x" 242.85714721679688;
+	setAttr ".tgi[0].ni[2].y" -101.42857360839844;
+	setAttr ".tgi[0].ni[2].nvs" 1923;
+	setAttr ".tgi[0].ni[3].x" 242.85714721679688;
+	setAttr ".tgi[0].ni[3].y" -101.42857360839844;
+	setAttr ".tgi[0].ni[3].nvs" 1923;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -166,10 +274,10 @@ select -ne :hardwareRenderingGlobals;
 	setAttr ".fprt" yes;
 	setAttr ".rtfm" 1;
 select -ne :renderPartition;
-	setAttr -s 2 ".st";
+	setAttr -s 5 ".st";
 select -ne :renderGlobalsList1;
 select -ne :defaultShaderList1;
-	setAttr -s 5 ".s";
+	setAttr -s 6 ".s";
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderingList1;
@@ -198,13 +306,43 @@ select -ne :defaultColorMgtGlobals;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
-connectAttr "polyCube1.out" "pCubeShape1.i";
+select -ne :ikSystem;
+	setAttr -s 4 ".sol";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "blinn1SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "phong1SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "blinn1SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "phong1SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
+connectAttr ":defaultArnoldDenoiser.msg" ":defaultArnoldRenderOptions.imagers" -na
+		;
+connectAttr ":defaultArnoldDisplayDriver.msg" ":defaultArnoldRenderOptions.drivers"
+		 -na;
+connectAttr ":defaultArnoldFilter.msg" ":defaultArnoldRenderOptions.filt";
+connectAttr ":defaultArnoldDriver.msg" ":defaultArnoldRenderOptions.drvr";
+connectAttr "PinkColor.oc" "lambert2SG.ss";
+connectAttr "WhiteboxRoomShape.iog" "lambert2SG.dsm" -na;
+connectAttr "lambert2SG.msg" "materialInfo1.sg";
+connectAttr "PinkColor.msg" "materialInfo1.m";
+connectAttr "blinn1SG.msg" "materialInfo2.sg";
+connectAttr "phong1SG.msg" "materialInfo3.sg";
+connectAttr "PinkColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+		;
+connectAttr "lambert2SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+		;
+connectAttr "phong1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
+		;
+connectAttr "blinn1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
+		;
+connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
+connectAttr "blinn1SG.pa" ":renderPartition.st" -na;
+connectAttr "phong1SG.pa" ":renderPartition.st" -na;
+connectAttr "PinkColor.msg" ":defaultShaderList1.s" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
-connectAttr "pCubeShape1.iog" ":initialShadingGroup.dsm" -na;
 // End of WhiteBoxRoom.ma
