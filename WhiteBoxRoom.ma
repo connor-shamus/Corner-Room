@@ -1,11 +1,12 @@
 //Maya ASCII 2025ff03 scene
 //Name: WhiteBoxRoom.ma
-//Last modified: Fri, Feb 07, 2025 03:30:50 PM
+//Last modified: Mon, Feb 10, 2025 04:24:36 PM
 //Codeset: 1252
 requires maya "2025ff03";
 requires "stereoCamera" "10.0";
 requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiSkyDomeLight"
-		 -nodeType "aiPhysicalSky" -nodeType "aiImagerDenoiserOidn" "mtoa" "5.4.2.1";
+		 -nodeType "aiStandardSurface" -nodeType "aiPhysicalSky" -nodeType "aiImagerDenoiserOidn"
+		 "mtoa" "5.4.2.1";
 requires "stereoCamera" "10.0";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
@@ -13,21 +14,21 @@ fileInfo "product" "Maya 2025";
 fileInfo "version" "2025";
 fileInfo "cutIdentifier" "202407121012-8ed02f4c99";
 fileInfo "osv" "Windows 10 Pro v2009 (Build: 19045)";
-fileInfo "UUID" "B3016F25-48BA-7A39-00D2-0081576930CF";
+fileInfo "UUID" "E517AD99-430E-DDEF-6A6A-8DB4D369B47E";
 createNode transform -s -n "persp";
 	rename -uid "05337E9B-41F2-F48F-7871-8AA645356B64";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 22.105198558129686 5.7396238121804384 34.619892181479123 ;
-	setAttr ".r" -type "double3" -723.93834912975001 -10767.399999989733 2.3595952521523816e-16 ;
+	setAttr ".t" -type "double3" 6.5541159672421028 5.6885246664656819 3.6036060555756335 ;
+	setAttr ".r" -type "double3" -740.13834912154857 -10742.599999983469 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "BE887DC2-42ED-F5DE-278A-D0906BAE7062";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 41.307461982785178;
+	setAttr ".coi" 7.3440894326496933;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" -0.097500085830688477 2.9025015830993652 -0.097500085830688477 ;
+	setAttr ".tp" -type "double3" 1.3022446618551091 1.4326336535450865 0.19362731415101497 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 createNode transform -s -n "top";
 	rename -uid "B87616B5-4041-02D0-1A0D-7EA4826DFFD6";
@@ -12826,8 +12827,8 @@ createNode mesh -n "TVAntennaShape2" -p "TVAntenna02";
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode transform -n "camera1";
 	rename -uid "026BD2ED-46F2-CB10-7DEE-928C02B872EB";
-	setAttr ".t" -type "double3" 13.464375468958957 9.3582367451879556 12.818137729037106 ;
-	setAttr ".r" -type "double3" -20.400000000000553 47.600000000001387 2.3584038407907127e-15 ;
+	setAttr ".t" -type "double3" 11.575859044936477 6.4004909555227281 12.444496341252551 ;
+	setAttr ".r" -type "double3" -12.600000000000671 44.000000000001506 1.1053728293520858e-15 ;
 	setAttr ".rp" -type "double3" 4.9960036108132044e-16 -4.4408920985006262e-16 0 ;
 	setAttr ".rpt" -type "double3" -4.8407910582526928e-17 2.7852391729915327e-17 -2.6455251076477779e-16 ;
 	setAttr ".sp" -type "double3" 4.9960036108132044e-16 -4.4408920985006262e-16 0 ;
@@ -12837,7 +12838,7 @@ createNode camera -n "cameraShape1" -p "camera1";
 	setAttr ".rnd" no;
 	setAttr ".cap" -type "double2" 1.41732 0.94488 ;
 	setAttr ".ff" 0;
-	setAttr ".coi" 18.67267059832016;
+	setAttr ".coi" 16.278410493140122;
 	setAttr ".ow" 30;
 	setAttr ".imn" -type "string" "camera1";
 	setAttr ".den" -type "string" "camera1_depth";
@@ -12848,21 +12849,59 @@ createNode transform -n "aiSkyDomeLight1";
 createNode aiSkyDomeLight -n "aiSkyDomeLightShape1" -p "aiSkyDomeLight1";
 	rename -uid "9D966184-4A1B-D727-81C7-1C9031E7AFE6";
 	setAttr -k off ".v";
+createNode transform -n "LeftAreaLight";
+	rename -uid "0CC7CC32-438A-365C-3BBF-70A8FBE7F9E6";
+	setAttr ".t" -type "double3" 0 3.3296738835094217 5.5869686102967586 ;
+	setAttr ".r" -type "double3" -21.532623094509457 -5.4082508798830986 -1.8118023062459281 ;
+	setAttr ".s" -type "double3" 3.2251573892409895 3.2251573892409895 3.2251573892409895 ;
+createNode areaLight -n "LeftAreaLightShape" -p "LeftAreaLight";
+	rename -uid "399F7FB0-4F7A-FFD4-AC32-9BA05EF8E80D";
+	setAttr -k off ".v";
+	setAttr ".in" 2.5;
+createNode transform -n "CeilingAreaLight";
+	rename -uid "D82C1D11-4DD7-66D1-E217-28917490BC62";
+	setAttr ".t" -type "double3" 0 6.0001317454903438 0 ;
+	setAttr ".r" -type "double3" -90 0 0 ;
+	setAttr ".s" -type "double3" 3.0059737518726628 3.0059737518726628 3.0059737518726628 ;
+createNode areaLight -n "CeilingAreaLightShape" -p "CeilingAreaLight";
+	rename -uid "199B27A6-4164-0412-DC29-EEBC1F55248D";
+	setAttr -k off ".v";
+	setAttr ".in" 4.345238208770752;
+createNode transform -n "TVAreaLight";
+	rename -uid "3DB466F2-4CE9-3D7E-329B-FBAEBFD15E18";
+	setAttr ".t" -type "double3" 1.5358237718738819 1.4326336535450865 0.19362731415101495 ;
+	setAttr ".r" -type "double3" 0 90 0 ;
+	setAttr ".s" -type "double3" 0.52394945091486644 0.51271100284726945 0.48577201754719262 ;
+createNode areaLight -n "TVAreaLightShape" -p "TVAreaLight";
+	rename -uid "ED609E24-4ED8-F17C-A3D3-20B26B3E9A75";
+	setAttr -k off ".v";
+	setAttr ".cl" -type "float3" 0.35299999 0.35299999 1 ;
+	setAttr ".in" 10;
+createNode transform -n "LampPointLight";
+	rename -uid "71AEDDDB-4F09-B591-71C4-6F9F971C1F55";
+	setAttr ".t" -type "double3" -1.74021615473566 3.3391827768764561 -1.3742547077593059 ;
+createNode pointLight -n "LampPointLightShape" -p "LampPointLight";
+	rename -uid "8CAD6C3A-405A-7145-34B1-B995D6D4FDB7";
+	setAttr -k off ".v";
+	setAttr ".cl" -type "float3" 1 0.89788574 0.70500004 ;
+	setAttr ".in" 4.4230771064758301;
+	setAttr ".us" no;
+	setAttr ".ai_radius" 0.05000000074505806;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "49B6154A-4C5C-D584-6BF4-09BFCC8F034D";
-	setAttr -s 19 ".lnk";
-	setAttr -s 19 ".slnk";
+	rename -uid "0EF0A875-40E0-53F9-4640-909DB96DF834";
+	setAttr -s 20 ".lnk";
+	setAttr -s 20 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "DC9DB4BE-426F-7852-EDB2-BEBE2D91FC20";
+	rename -uid "A2BC3D66-413B-943B-E386-D4B0DA5CE45F";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "68B0F1CC-4DEE-FBEF-1032-DA980460862B";
+	rename -uid "2F8886C7-464C-DB37-ECA0-4EB7170A16F2";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "57A82BCF-4639-721D-6BAD-2EA2E9A64788";
+	rename -uid "9DE021D8-47D4-DD12-2A71-66BE1E453F28";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "226CB34C-4A88-D680-8479-DF95BA56D3A4";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "50B26D23-4A5D-5856-E351-F2ACBE2250CE";
+	rename -uid "E580B59D-419C-0975-5FF7-178A270AFCA8";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "CF5B6523-4A0A-833A-CC4E-1594A1B5D09C";
 	setAttr ".g" yes;
@@ -13063,72 +13102,6 @@ createNode shadingEngine -n "blinn5SG";
 	setAttr ".ro" yes;
 createNode materialInfo -n "materialInfo13";
 	rename -uid "92239A05-4E0A-C03D-5D95-51A1458C2FD7";
-createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
-	rename -uid "795746DA-47D0-30AD-BB65-C698A76E2C54";
-	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
-	setAttr ".tgi[0].vl" -type "double2" -103.66440324953366 -1097.619004003587 ;
-	setAttr ".tgi[0].vh" -type "double2" 576.28343208838851 84.523806165135269 ;
-	setAttr -s 20 ".tgi[0].ni";
-	setAttr ".tgi[0].ni[0].x" -10;
-	setAttr ".tgi[0].ni[0].y" -768.5714111328125;
-	setAttr ".tgi[0].ni[0].nvs" 1923;
-	setAttr ".tgi[0].ni[1].x" 338.57144165039062;
-	setAttr ".tgi[0].ni[1].y" -101.42857360839844;
-	setAttr ".tgi[0].ni[1].nvs" 1923;
-	setAttr ".tgi[0].ni[2].x" -232.85714721679688;
-	setAttr ".tgi[0].ni[2].y" -241.42857360839844;
-	setAttr ".tgi[0].ni[2].nvs" 1923;
-	setAttr ".tgi[0].ni[3].x" 31.428571701049805;
-	setAttr ".tgi[0].ni[3].y" -145.71427917480469;
-	setAttr ".tgi[0].ni[3].nvs" 1923;
-	setAttr ".tgi[0].ni[4].x" -27.142856597900391;
-	setAttr ".tgi[0].ni[4].y" -251.42857360839844;
-	setAttr ".tgi[0].ni[4].nvs" 1923;
-	setAttr ".tgi[0].ni[5].x" 297.14285278320312;
-	setAttr ".tgi[0].ni[5].y" -322.85714721679688;
-	setAttr ".tgi[0].ni[5].nvs" 1923;
-	setAttr ".tgi[0].ni[6].x" -10;
-	setAttr ".tgi[0].ni[6].y" -322.85714721679688;
-	setAttr ".tgi[0].ni[6].nvs" 1923;
-	setAttr ".tgi[0].ni[7].x" 297.14285278320312;
-	setAttr ".tgi[0].ni[7].y" -322.85714721679688;
-	setAttr ".tgi[0].ni[7].nvs" 1923;
-	setAttr ".tgi[0].ni[8].x" -10;
-	setAttr ".tgi[0].ni[8].y" -322.85714721679688;
-	setAttr ".tgi[0].ni[8].nvs" 1923;
-	setAttr ".tgi[0].ni[9].x" 281.42855834960938;
-	setAttr ".tgi[0].ni[9].y" -251.42857360839844;
-	setAttr ".tgi[0].ni[9].nvs" 1923;
-	setAttr ".tgi[0].ni[10].x" 124.28571319580078;
-	setAttr ".tgi[0].ni[10].y" -571.4285888671875;
-	setAttr ".tgi[0].ni[10].nvs" 1923;
-	setAttr ".tgi[0].ni[11].x" 281.42855834960938;
-	setAttr ".tgi[0].ni[11].y" -252.85714721679688;
-	setAttr ".tgi[0].ni[11].nvs" 1923;
-	setAttr ".tgi[0].ni[12].x" -25.714284896850586;
-	setAttr ".tgi[0].ni[12].y" -251.42857360839844;
-	setAttr ".tgi[0].ni[12].nvs" 1923;
-	setAttr ".tgi[0].ni[13].x" 74.285713195800781;
-	setAttr ".tgi[0].ni[13].y" -241.42857360839844;
-	setAttr ".tgi[0].ni[13].nvs" 1923;
-	setAttr ".tgi[0].ni[14].x" 297.14285278320312;
-	setAttr ".tgi[0].ni[14].y" -768.5714111328125;
-	setAttr ".tgi[0].ni[14].nvs" 1923;
-	setAttr ".tgi[0].ni[15].x" -25.714284896850586;
-	setAttr ".tgi[0].ni[15].y" -252.85714721679688;
-	setAttr ".tgi[0].ni[15].nvs" 1923;
-	setAttr ".tgi[0].ni[16].x" 280;
-	setAttr ".tgi[0].ni[16].y" -251.42857360839844;
-	setAttr ".tgi[0].ni[16].nvs" 1923;
-	setAttr ".tgi[0].ni[17].x" 338.57144165039062;
-	setAttr ".tgi[0].ni[17].y" -145.71427917480469;
-	setAttr ".tgi[0].ni[17].nvs" 1923;
-	setAttr ".tgi[0].ni[18].x" -10;
-	setAttr ".tgi[0].ni[18].y" -322.85714721679688;
-	setAttr ".tgi[0].ni[18].nvs" 1923;
-	setAttr ".tgi[0].ni[19].x" 297.14285278320312;
-	setAttr ".tgi[0].ni[19].y" -322.85714721679688;
-	setAttr ".tgi[0].ni[19].nvs" 1923;
 createNode blinn -n "TVBoxColor";
 	rename -uid "CE11C4CB-471E-7EB0-58B4-5DB5C35FC828";
 	setAttr ".c" -type "float3" 0.5 0.4037703 0.2915 ;
@@ -13170,9 +13143,91 @@ createNode lambert -n "lambert9";
 createNode aiPhysicalSky -n "aiPhysicalSky1";
 	rename -uid "0E1A7478-493D-A515-E9E7-968307414308";
 	setAttr ".elevation" 22.5;
-	setAttr ".azimuth" 267.85714721679688;
-	setAttr ".sun_tint" -type "float3" 1 0.68422973 0.17900002 ;
-	setAttr ".intensity" 1.5732142925262451;
+	setAttr ".azimuth" 270;
+	setAttr ".sun_tint" -type "float3" 1 0.65384996 0 ;
+	setAttr ".intensity" 0.98392856121063232;
+createNode aiStandardSurface -n "aiStandardSurface1";
+	rename -uid "1341EAA8-4C95-6B8E-4575-AB9F609D4333";
+	setAttr ".emission" 0.44999998807907104;
+	setAttr ".emission_color" -type "float3" 0.61500001 0.61500001 0 ;
+createNode shadingEngine -n "aiStandardSurface1SG";
+	rename -uid "897DA577-450B-5260-032E-ACA9B0B2CA15";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo18";
+	rename -uid "1E2EDDB5-495D-455C-DB03-29A16DA7F98B";
+createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
+	rename -uid "EB6B2453-463E-FEEF-EDDB-B4A7006ABF21";
+	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
+	setAttr ".tgi[0].vl" -type "double2" -103.57142445586992 -1099.0874593477015 ;
+	setAttr ".tgi[0].vh" -type "double2" 577.38092943789559 84.801785366078661 ;
+	setAttr -s 22 ".tgi[0].ni";
+	setAttr ".tgi[0].ni[0].x" -28.571428298950195;
+	setAttr ".tgi[0].ni[0].y" -177.14285278320312;
+	setAttr ".tgi[0].ni[0].nvs" 2387;
+	setAttr ".tgi[0].ni[1].x" 320;
+	setAttr ".tgi[0].ni[1].y" -177.14285278320312;
+	setAttr ".tgi[0].ni[1].nvs" 1923;
+	setAttr ".tgi[0].ni[2].x" 124.28571319580078;
+	setAttr ".tgi[0].ni[2].y" -571.4285888671875;
+	setAttr ".tgi[0].ni[2].nvs" 1923;
+	setAttr ".tgi[0].ni[3].x" 281.42855834960938;
+	setAttr ".tgi[0].ni[3].y" -251.42857360839844;
+	setAttr ".tgi[0].ni[3].nvs" 1923;
+	setAttr ".tgi[0].ni[4].x" 297.14285278320312;
+	setAttr ".tgi[0].ni[4].y" -322.85714721679688;
+	setAttr ".tgi[0].ni[4].nvs" 1923;
+	setAttr ".tgi[0].ni[5].x" 74.285713195800781;
+	setAttr ".tgi[0].ni[5].y" -241.42857360839844;
+	setAttr ".tgi[0].ni[5].nvs" 1923;
+	setAttr ".tgi[0].ni[6].x" -25.714284896850586;
+	setAttr ".tgi[0].ni[6].y" -252.85714721679688;
+	setAttr ".tgi[0].ni[6].nvs" 1923;
+	setAttr ".tgi[0].ni[7].x" -10;
+	setAttr ".tgi[0].ni[7].y" -768.5714111328125;
+	setAttr ".tgi[0].ni[7].nvs" 1923;
+	setAttr ".tgi[0].ni[8].x" 297.14285278320312;
+	setAttr ".tgi[0].ni[8].y" -322.85714721679688;
+	setAttr ".tgi[0].ni[8].nvs" 1923;
+	setAttr ".tgi[0].ni[9].x" 297.14285278320312;
+	setAttr ".tgi[0].ni[9].y" -768.5714111328125;
+	setAttr ".tgi[0].ni[9].nvs" 1923;
+	setAttr ".tgi[0].ni[10].x" 338.57144165039062;
+	setAttr ".tgi[0].ni[10].y" -145.71427917480469;
+	setAttr ".tgi[0].ni[10].nvs" 1923;
+	setAttr ".tgi[0].ni[11].x" -10;
+	setAttr ".tgi[0].ni[11].y" -322.85714721679688;
+	setAttr ".tgi[0].ni[11].nvs" 1923;
+	setAttr ".tgi[0].ni[12].x" -27.142856597900391;
+	setAttr ".tgi[0].ni[12].y" -251.42857360839844;
+	setAttr ".tgi[0].ni[12].nvs" 1923;
+	setAttr ".tgi[0].ni[13].x" 338.57144165039062;
+	setAttr ".tgi[0].ni[13].y" -101.42857360839844;
+	setAttr ".tgi[0].ni[13].nvs" 1923;
+	setAttr ".tgi[0].ni[14].x" -232.85714721679688;
+	setAttr ".tgi[0].ni[14].y" -241.42857360839844;
+	setAttr ".tgi[0].ni[14].nvs" 1923;
+	setAttr ".tgi[0].ni[15].x" 31.428571701049805;
+	setAttr ".tgi[0].ni[15].y" -145.71427917480469;
+	setAttr ".tgi[0].ni[15].nvs" 1923;
+	setAttr ".tgi[0].ni[16].x" -10;
+	setAttr ".tgi[0].ni[16].y" -322.85714721679688;
+	setAttr ".tgi[0].ni[16].nvs" 1923;
+	setAttr ".tgi[0].ni[17].x" 297.14285278320312;
+	setAttr ".tgi[0].ni[17].y" -322.85714721679688;
+	setAttr ".tgi[0].ni[17].nvs" 1923;
+	setAttr ".tgi[0].ni[18].x" -10;
+	setAttr ".tgi[0].ni[18].y" -322.85714721679688;
+	setAttr ".tgi[0].ni[18].nvs" 1923;
+	setAttr ".tgi[0].ni[19].x" 281.42855834960938;
+	setAttr ".tgi[0].ni[19].y" -252.85714721679688;
+	setAttr ".tgi[0].ni[19].nvs" 1923;
+	setAttr ".tgi[0].ni[20].x" 280;
+	setAttr ".tgi[0].ni[20].y" -251.42857360839844;
+	setAttr ".tgi[0].ni[20].nvs" 1923;
+	setAttr ".tgi[0].ni[21].x" -25.714284896850586;
+	setAttr ".tgi[0].ni[21].y" -251.42857360839844;
+	setAttr ".tgi[0].ni[21].nvs" 1923;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -13184,15 +13239,16 @@ select -ne :hardwareRenderingGlobals;
 	setAttr ".fprt" yes;
 	setAttr ".rtfm" 1;
 select -ne :renderPartition;
-	setAttr -s 19 ".st";
+	setAttr -s 20 ".st";
 select -ne :renderGlobalsList1;
 select -ne :defaultShaderList1;
-	setAttr -s 20 ".s";
+	setAttr -s 21 ".s";
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderUtilityList1;
 select -ne :defaultRenderingList1;
 select -ne :lightList1;
+	setAttr -s 5 ".l";
 select -ne :defaultTextureList1;
 select -ne :standardSurface1;
 	setAttr ".bc" -type "float3" 0.40000001 0.40000001 0.40000001 ;
@@ -13210,6 +13266,7 @@ select -ne :defaultRenderGlobals;
 select -ne :defaultResolution;
 	setAttr ".pa" 1;
 select -ne :defaultLightSet;
+	setAttr -s 5 ".dsm";
 select -ne :defaultColorMgtGlobals;
 	setAttr ".cfe" yes;
 	setAttr ".cfp" -type "string" "<MAYA_RESOURCES>/OCIO-configs/Maya2022-default/config.ocio";
@@ -13222,8 +13279,6 @@ select -ne :defaultColorMgtGlobals;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 connectAttr "aiPhysicalSky1.out" "aiSkyDomeLightShape1.sc";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
@@ -13244,6 +13299,7 @@ relationship "link" ":lightLinker1" "blinn6SG.message" ":defaultLightSet.message
 relationship "link" ":lightLinker1" "blinn7SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "blinn8SG.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "blinn9SG.message" ":defaultLightSet.message";
+relationship "link" ":lightLinker1" "aiStandardSurface1SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
@@ -13263,6 +13319,7 @@ relationship "shadowLink" ":lightLinker1" "blinn6SG.message" ":defaultLightSet.m
 relationship "shadowLink" ":lightLinker1" "blinn7SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "blinn8SG.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" "blinn9SG.message" ":defaultLightSet.message";
+relationship "shadowLink" ":lightLinker1" "aiStandardSurface1SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "WallColor.oc" "lambert2SG.ss";
@@ -13360,7 +13417,6 @@ connectAttr "pPlaneShape1.iog" "lambert7SG.dsm" -na;
 connectAttr "lambert7SG.msg" "materialInfo9.sg";
 connectAttr "LampBaseColor.msg" "materialInfo9.m";
 connectAttr "LampShadeColor.oc" "lambert8SG.ss";
-connectAttr "LampShadeShape.iog" "lambert8SG.dsm" -na;
 connectAttr "lambert8SG.msg" "materialInfo10.sg";
 connectAttr "LampShadeColor.msg" "materialInfo10.m";
 connectAttr "RugColor01.oc" "blinn3SG.ss";
@@ -13375,46 +13431,6 @@ connectAttr "RugColor03.oc" "blinn5SG.ss";
 connectAttr "CenterShape.iog" "blinn5SG.dsm" -na;
 connectAttr "blinn5SG.msg" "materialInfo13.sg";
 connectAttr "RugColor03.msg" "materialInfo13.m";
-connectAttr "LampBaseColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
-		;
-connectAttr "blinn1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
-		;
-connectAttr "FrameColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
-		;
-connectAttr "WallColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
-		;
-connectAttr "TileColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[4].dn"
-		;
-connectAttr "blinn3SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[5].dn"
-		;
-connectAttr "RugColor01.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[6].dn"
-		;
-connectAttr "blinn4SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[7].dn"
-		;
-connectAttr "RugColor02.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[8].dn"
-		;
-connectAttr "lambert4SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[9].dn"
-		;
-connectAttr "lambert1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[10].dn"
-		;
-connectAttr "lambert5SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[11].dn"
-		;
-connectAttr "TrimColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[12].dn"
-		;
-connectAttr "lambert6SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[13].dn"
-		;
-connectAttr "lambert7SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[14].dn"
-		;
-connectAttr "CouchColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[15].dn"
-		;
-connectAttr "lambert3SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[16].dn"
-		;
-connectAttr "lambert2SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[17].dn"
-		;
-connectAttr "RugColor03.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[18].dn"
-		;
-connectAttr "blinn5SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[19].dn"
-		;
 connectAttr "TVBoxColor.oc" "blinn6SG.ss";
 connectAttr "TVBoxShape.iog" "blinn6SG.dsm" -na;
 connectAttr "blinn6SG.msg" "materialInfo14.sg";
@@ -13436,6 +13452,55 @@ connectAttr "TVLegShape2.iog" "blinn9SG.dsm" -na;
 connectAttr "TVLegShape1.iog" "blinn9SG.dsm" -na;
 connectAttr "blinn9SG.msg" "materialInfo17.sg";
 connectAttr "lambert9.msg" "materialInfo17.m";
+connectAttr "aiStandardSurface1.out" "aiStandardSurface1SG.ss";
+connectAttr "LampShadeShape.iog" "aiStandardSurface1SG.dsm" -na;
+connectAttr "aiStandardSurface1SG.msg" "materialInfo18.sg";
+connectAttr "aiStandardSurface1.msg" "materialInfo18.m";
+connectAttr "aiStandardSurface1.msg" "materialInfo18.t" -na;
+connectAttr "aiStandardSurface1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+		;
+connectAttr "aiStandardSurface1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+		;
+connectAttr "lambert1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
+		;
+connectAttr "lambert4SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
+		;
+connectAttr "blinn4SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[4].dn"
+		;
+connectAttr "lambert6SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[5].dn"
+		;
+connectAttr "CouchColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[6].dn"
+		;
+connectAttr "LampBaseColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[7].dn"
+		;
+connectAttr "blinn3SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[8].dn"
+		;
+connectAttr "lambert7SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[9].dn"
+		;
+connectAttr "lambert2SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[10].dn"
+		;
+connectAttr "RugColor03.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[11].dn"
+		;
+connectAttr "TileColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[12].dn"
+		;
+connectAttr "blinn1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[13].dn"
+		;
+connectAttr "FrameColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[14].dn"
+		;
+connectAttr "WallColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[15].dn"
+		;
+connectAttr "RugColor01.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[16].dn"
+		;
+connectAttr "blinn5SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[17].dn"
+		;
+connectAttr "RugColor02.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[18].dn"
+		;
+connectAttr "lambert5SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[19].dn"
+		;
+connectAttr "lambert3SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[20].dn"
+		;
+connectAttr "TrimColor.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[21].dn"
+		;
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "blinn1SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert1SG.pa" ":renderPartition.st" -na;
@@ -13453,6 +13518,7 @@ connectAttr "blinn6SG.pa" ":renderPartition.st" -na;
 connectAttr "blinn7SG.pa" ":renderPartition.st" -na;
 connectAttr "blinn8SG.pa" ":renderPartition.st" -na;
 connectAttr "blinn9SG.pa" ":renderPartition.st" -na;
+connectAttr "aiStandardSurface1SG.pa" ":renderPartition.st" -na;
 connectAttr "WallColor.msg" ":defaultShaderList1.s" -na;
 connectAttr "TileColor.msg" ":defaultShaderList1.s" -na;
 connectAttr "TrimColor.msg" ":defaultShaderList1.s" -na;
@@ -13468,9 +13534,18 @@ connectAttr "TVBoxColor.msg" ":defaultShaderList1.s" -na;
 connectAttr "TVScreenColor.msg" ":defaultShaderList1.s" -na;
 connectAttr "TVReceiverColor.msg" ":defaultShaderList1.s" -na;
 connectAttr "lambert9.msg" ":defaultShaderList1.s" -na;
+connectAttr "aiStandardSurface1.msg" ":defaultShaderList1.s" -na;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "aiSkyDomeLightShape1.ltd" ":lightList1.l" -na;
+connectAttr "LeftAreaLightShape.ltd" ":lightList1.l" -na;
+connectAttr "CeilingAreaLightShape.ltd" ":lightList1.l" -na;
+connectAttr "TVAreaLightShape.ltd" ":lightList1.l" -na;
+connectAttr "LampPointLightShape.ltd" ":lightList1.l" -na;
 connectAttr "file1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "aiSkyDomeLight1.iog" ":defaultLightSet.dsm" -na;
+connectAttr "LeftAreaLight.iog" ":defaultLightSet.dsm" -na;
+connectAttr "CeilingAreaLight.iog" ":defaultLightSet.dsm" -na;
+connectAttr "TVAreaLight.iog" ":defaultLightSet.dsm" -na;
+connectAttr "LampPointLight.iog" ":defaultLightSet.dsm" -na;
 // End of WhiteBoxRoom.ma
